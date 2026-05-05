@@ -11,12 +11,33 @@
     <section class="game-panel">
       <img class="game-icon" src="assets/logo_transparent_2.png" alt="Icon for Lernaean Hydra" />
       <h1>Lernaean Hydra</h1>
+      <div class="game1-task">Task: Don't engage</div>
       <p>Sink your teeth into a hydra of modern challenges. This minigame page is themed after the labor of Lernaean Hydra.</p>
       <div class="game-actions">
         <a class="link-button" href="index.html">Back to menu</a>
       </div>
-      <div class="game-frame">Prepare for the Lernaean Hydra challenge.</div>
+      <div class="game-frame game1-frame">
+        <div class="game1-start-panel" id="gameStart">
+          <h2>Ready for the second labor?</h2>
+          <p>Sticky thoughts will appear, begging to be touched. Press <strong>Begin</strong> and resist the urge — touch them and they multiply, leave them alone and they fade on their own.</p>
+          <button class="link-button" id="startButton">Begin</button>
+        </div>
+        <div class="game2-board hidden" id="gameBoard">
+          <div class="game2-gum-layer" id="gumLayer"></div>
+          <div class="game2-end hidden" id="endOverlay"></div>
+        </div>
+        <div class="game1-status">
+          <div class="game1-meter">
+            <label for="peaceFill">Peace of mind</label>
+            <div class="meter-bar">
+              <div class="meter-fill" id="peaceFill"></div>
+            </div>
+          </div>
+          <div class="game1-message" id="gameMessage">Press Begin and try not to touch what doesn't need touching.</div>
+        </div>
+      </div>
     </section>
   </main>
+  <script src="game2.js" defer></script>
 </body>
 </html>

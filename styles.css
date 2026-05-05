@@ -415,3 +415,70 @@ body::before {
   font-size: 0.98rem;
   min-height: 1.3rem;
 }
+
+.game2-board {
+  position: relative;
+  min-height: 360px;
+  border-radius: 24px;
+  overflow: hidden;
+  background: radial-gradient(circle at 30% 20%, #2a3140 0%, #161a22 55%, #0a0d12 100%);
+  box-shadow: inset 0 0 120px rgba(0, 0, 0, 0.35);
+}
+
+.game2-gum-layer {
+  position: absolute;
+  inset: 0;
+}
+
+.game2-gum {
+  position: absolute;
+  appearance: none;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: radial-gradient(circle at 30% 30%, #ffc7d1 0%, #e36a83 55%, #8a2740 110%);
+  color: #2a0a13;
+  font-family: inherit;
+  font-weight: 700;
+  font-style: italic;
+  font-size: 0.9rem;
+  letter-spacing: 0.01em;
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.4), inset 0 0 14px rgba(255, 255, 255, 0.22);
+  transform: translate(-50%, -50%) rotate(var(--rot, 0deg)) scale(1);
+  transition: opacity 320ms ease, transform 320ms ease, filter 200ms ease;
+}
+
+.game2-gum:hover,
+.game2-gum:focus-visible {
+  filter: brightness(1.08);
+  outline: none;
+}
+
+.game2-gum.game2-gum-spawning {
+  opacity: 0;
+  transform: translate(-50%, -50%) rotate(var(--rot, 0deg)) scale(0.4);
+}
+
+.game2-gum.fading {
+  opacity: 0;
+  transform: translate(-50%, -50%) rotate(var(--rot, 0deg)) scale(0.6);
+  pointer-events: none;
+  transition: opacity 700ms ease, transform 700ms ease;
+}
+
+.game2-end {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(8, 10, 14, 0.82);
+  color: #e9fdff;
+  font-size: 1.15rem;
+  text-align: center;
+  padding: 2rem;
+  z-index: 5;
+  letter-spacing: 0.02em;
+}
