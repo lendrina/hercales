@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nemean Lion | The 12 Labors of the Modern Hero</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="game-shell">
+    <section class="game-panel">
+      <img class="game-icon" src="assets/logo_transparent_1.png" alt="Icon for Nemean Lion" />
+      <h1>Nemean Lion</h1>
+      <div class="game1-task">Task: Clean the window</div>
+      <p>Face the first labor with legendary strength. This minigame page is themed after the labor of Nemean Lion.</p>
+      <div class="game-actions">
+        <a class="link-button" href="index.html">Back to menu</a>
+      </div>
+      <div class="game-frame game1-frame">
+        <div class="game1-start-panel" id="gameStart">
+          <h2>Ready to start your first labor?</h2>
+          <p>Press <strong>Start cleaning</strong> and choose the positive actions. The window will clear as you remove the fog.</p>
+          <button class="link-button" id="startButton">Start cleaning</button>
+        </div>
+        <div class="game1-board" id="gameBoard">
+          <div class="window-view"></div>
+          <div class="window-glass">
+            <div class="fog-layer" id="fogLayer"></div>
+            <div class="scribble-wall">
+              <span class="scribble scribble-1">you’re not good enough</span>
+              <span class="scribble scribble-2">you’ll fail</span>
+              <span class="scribble scribble-3">it’s pointless</span>
+              <span class="scribble scribble-4">nobody cares</span>
+              <span class="scribble scribble-5">you can’t change</span>
+              <span class="scribble scribble-6">give up now</span>
+            </div>
+            <div class="tile-grid" id="tileGrid"></div>
+          </div>
+        </div>
+        <div class="game1-status">
+          <div class="game1-meter">
+            <label for="clarityFill">Window clarity</label>
+            <div class="meter-bar">
+              <div class="meter-fill" id="clarityFill"></div>
+            </div>
+          </div>
+          <div class="game1-message" id="gameMessage">Press Start cleaning to begin and choose positive actions.</div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="game1.js" defer></script>
+</body>
+</html>
