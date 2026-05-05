@@ -5,18 +5,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Erymanthian Boar | The 12 Labors of the Modern Hero</title>
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="game4.css" />
 </head>
 <body>
   <main class="game-shell">
     <section class="game-panel">
-      <img class="game-icon" src="assets/logo_transparent_4.png" alt="Icon for Erymanthian Boar" />
+      <img class="game-icon" src="assets/logo_transparent_3.png" alt="Icon for Erymanthian Boar" />
       <h1>Erymanthian Boar</h1>
-      <p>Track down the wild force of this labor. This minigame page is themed after the labor of Erymanthian Boar.</p>
-      <div class="game-actions">
-        <a class="link-button" href="index.html">Back to menu</a>
+      <div class="game1-task">Task: Keep moving</div>
+      <p>A dark cloud of anxiety follows you everywhere — the harder you run, the heavier it grows. But if you stop, it swallows you whole. The only way through is to keep moving, steadily, until the cloud exhausts itself and fades away.</p>
+      <div class="game-actions"><a class="link-button" href="index.html">Back to menu</a></div>
+      <div class="game-frame game1-frame">
+        <div class="game1-start-panel" id="gameStart">
+          <h2>Can you outlast your anxiety?</h2>
+          <p>Move your cursor continuously inside the arena. The cloud will chase you — but keep moving for 60 seconds and it will exhaust itself and vanish.</p>
+          <button class="link-button" id="startButton">Face the cloud</button>
+        </div>
+        <div class="game4-board hidden" id="gameBoard">
+          <div class="game4-cloud" id="cloud"></div>
+          <div class="game4-end hidden" id="endOverlay"></div>
+        </div>
+        <div class="game1-status">
+          <div class="game1-meter">
+            <label for="meterFill">Endurance</label>
+            <div class="meter-bar"><div class="meter-fill" id="meterFill"></div></div>
+          </div>
+          <div class="game1-message" id="gameMessage">Press "Face the cloud" to begin — then keep moving.</div>
+        </div>
       </div>
-      <div class="game-frame">Prepare for the Erymanthian Boar challenge.</div>
     </section>
   </main>
+  <script src="game4.js" defer></script>
 </body>
 </html>

@@ -5,18 +5,59 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cretan Bull | The 12 Labors of the Modern Hero</title>
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="game7.css" />
 </head>
 <body>
   <main class="game-shell">
     <section class="game-panel">
       <img class="game-icon" src="assets/logo_transparent_7.png" alt="Icon for Cretan Bull" />
       <h1>Cretan Bull</h1>
-      <p>Master the power of the raging bull. This minigame page is themed after the labor of Cretan Bull.</p>
-      <div class="game-actions">
-        <a class="link-button" href="index.html">Back to menu</a>
+      <div class="game1-task">Task: Hold what's yours</div>
+      <p>The Cretan Bull cannot be tamed — but you don't need to tame it. Some things will keep raging no matter how hard you fight them. The wisdom lies in knowing what you actually control.</p>
+      <div class="game-actions"><a class="link-button" href="index.html">Back to menu</a></div>
+      <div class="game-frame game1-frame">
+        <div class="game1-start-panel" id="gameStart">
+          <h2>The table won't stop shaking.</h2>
+          <p>A cup sits on a rattling table, spilling water no matter what you try. Push buttons to steady it — or discover the one move that actually works.</p>
+          <button class="link-button" id="startButton">Face the chaos</button>
+        </div>
+        <div class="game7-board hidden" id="gameBoard">
+          <div class="game7-scene">
+            <div class="game7-table" id="gameTable">
+              <div class="game7-table-top">
+                <div class="game7-cup" id="gameCup">
+                  <div class="game7-water" id="gameWater"></div>
+                  <div class="game7-cup-label">Lift me</div>
+                </div>
+              </div>
+              <div class="game7-table-leg game7-leg-left"></div>
+              <div class="game7-table-leg game7-leg-right"></div>
+            </div>
+          </div>
+          <div class="game7-controls" id="gameControls">
+            <button class="game7-red-btn" id="btnLegs">Tighten table legs</button>
+            <button class="game7-red-btn" id="btnHold">Hold table down</button>
+            <button class="game7-red-btn" id="btnFeet">Press feet harder</button>
+            <button class="game7-lift-btn" id="btnLift">Lift the cup</button>
+          </div>
+          <div class="game7-end hidden" id="gameEnd">
+            <div class="game7-end-content">
+              <div class="game7-end-icon">&#10003;</div>
+              <h2>You held what was yours.</h2>
+              <p>You can't stop the shaking — but you can choose what you carry. Accept your emotions; control your actions.</p>
+            </div>
+          </div>
+        </div>
+        <div class="game1-status">
+          <div class="game1-meter">
+            <label for="meterFill">Water level</label>
+            <div class="meter-bar"><div class="meter-fill" id="meterFill"></div></div>
+          </div>
+          <div class="game1-message" id="gameMessage">The table is shaking. Try something to stop it.</div>
+        </div>
       </div>
-      <div class="game-frame">Prepare for the Cretan Bull challenge.</div>
     </section>
   </main>
+  <script src="game7.js" defer></script>
 </body>
 </html>

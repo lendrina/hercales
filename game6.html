@@ -5,18 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Stymphalian Birds | The 12 Labors of the Modern Hero</title>
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="game6.css" />
 </head>
 <body>
   <main class="game-shell">
     <section class="game-panel">
-      <img class="game-icon" src="assets/logo_transparent_6.png" alt="Icon for Stymphalian Birds" />
+      <img class="game-icon" src="assets/logo_transparent_5.png" alt="Icon for Stymphalian Birds" />
       <h1>Stymphalian Birds</h1>
-      <p>Outsmart flocks and stay sharp. This minigame page is themed after the labor of Stymphalian Birds.</p>
-      <div class="game-actions">
-        <a class="link-button" href="index.html">Back to menu</a>
+      <div class="game1-task">Task: Focus on one</div>
+      <p>Three interviewers flock at you simultaneously, each demanding your attention. Like the Stymphalian Birds that plagued Hercules with noise and chaos, their overlapping voices shatter concentration. The only path forward: silence one bird at a time.</p>
+      <div class="game-actions"><a class="link-button" href="index.html">Back to menu</a></div>
+      <div class="game-frame game1-frame">
+        <div class="game1-start-panel" id="gameStart">
+          <h2>Three voices, one focus</h2>
+          <p>Three interviewers are speaking at once. Click a panel to focus on that interviewer — but if you switch away before finishing, your answer resets to zero. Complete all three panels to win.</p>
+          <button class="link-button" id="startButton">Begin Interview</button>
+        </div>
+        <div class="game6-board hidden" id="gameBoard"><!-- interview panels injected by JS --></div>
+        <div class="game1-status">
+          <div class="game1-meter">
+            <label for="meterFill">Composure</label>
+            <div class="meter-bar"><div class="meter-fill" id="meterFill"></div></div>
+          </div>
+          <div class="game1-message" id="gameMessage">Click a panel to focus on that interviewer and start answering.</div>
+        </div>
       </div>
-      <div class="game-frame">Prepare for the Stymphalian Birds challenge.</div>
     </section>
   </main>
+  <script src="game6.js" defer></script>
 </body>
 </html>

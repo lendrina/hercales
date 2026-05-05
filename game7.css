@@ -1,0 +1,274 @@
+/* ============================================================
+   Game 7 — Cretan Bull / Emotional Overload
+   All classes namespaced with .game7-
+   ============================================================ */
+
+/* Board — must stretch to fill the grid cell */
+.game7-board {
+  position: relative;
+  width: 100%;
+  justify-self: stretch;
+  min-height: 360px;
+  border-radius: 24px;
+  overflow: hidden;
+  background: radial-gradient(circle at 40% 20%, #1e2630 0%, #10141a 55%, #080a0d 100%);
+  box-shadow: inset 0 0 120px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 1rem 1rem;
+  gap: 1rem;
+}
+
+/* ---- Scene (table + cup area) ---- */
+.game7-scene {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+  padding-bottom: 0.5rem;
+}
+
+/* ---- Table ---- */
+.game7-table {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@keyframes game7-shake {
+  0%   { transform: translateX(0)   rotate(0deg); }
+  10%  { transform: translateX(-4px) rotate(-0.8deg); }
+  20%  { transform: translateX(5px)  rotate(0.6deg); }
+  30%  { transform: translateX(-6px) rotate(-1deg); }
+  40%  { transform: translateX(4px)  rotate(0.7deg); }
+  50%  { transform: translateX(-3px) rotate(-0.5deg); }
+  60%  { transform: translateX(6px)  rotate(1deg); }
+  70%  { transform: translateX(-5px) rotate(-0.8deg); }
+  80%  { transform: translateX(3px)  rotate(0.6deg); }
+  90%  { transform: translateX(-4px) rotate(-0.4deg); }
+  100% { transform: translateX(0)    rotate(0deg); }
+}
+
+.game7-table.shaking {
+  animation: game7-shake 0.45s linear infinite;
+  transform-origin: bottom center;
+}
+
+.game7-table-top {
+  width: 140px;
+  height: 16px;
+  background: linear-gradient(180deg, #8b6f47, #6b4f2e);
+  border-radius: 4px 4px 2px 2px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  position: relative;
+}
+
+.game7-table-leg {
+  position: absolute;
+  bottom: -64px;
+  width: 10px;
+  height: 64px;
+  background: linear-gradient(180deg, #7a5f38, #5a3e1e);
+  border-radius: 0 0 3px 3px;
+}
+
+.game7-leg-left  { left: 14px; }
+.game7-leg-right { right: 14px; }
+
+/* ---- Cup ---- */
+.game7-cup {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 36px;
+  height: 52px;
+  background: linear-gradient(180deg, rgba(200, 230, 255, 0.22), rgba(160, 200, 240, 0.14));
+  border: 2px solid rgba(180, 220, 255, 0.55);
+  border-radius: 4px 4px 8px 8px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.4s ease,
+              border-color 0.4s ease;
+  display: flex;
+  align-items: flex-end;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+}
+
+.game7-cup:hover {
+  border-color: rgba(95, 212, 225, 0.9);
+  box-shadow: 0 0 14px rgba(95, 212, 225, 0.45);
+}
+
+.game7-cup.lifted {
+  transform: translateX(-50%) translateY(-80px);
+  border-color: rgba(95, 212, 225, 0.8);
+  box-shadow: 0 14px 36px rgba(95, 212, 225, 0.3);
+  cursor: default;
+}
+
+.game7-cup-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 0.45rem;
+  color: rgba(200, 240, 255, 0.7);
+  white-space: nowrap;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  pointer-events: none;
+  line-height: 1.1;
+  text-align: center;
+}
+
+/* ---- Water fill inside cup ---- */
+.game7-water {
+  width: 100%;
+  background: linear-gradient(180deg, rgba(95, 212, 225, 0.6), rgba(40, 160, 200, 0.8));
+  border-radius: 0 0 6px 6px;
+  transition: height 0.25s ease;
+  height: 60%; /* set dynamically */
+}
+
+@keyframes game7-splash {
+  0%   { opacity: 0.7; }
+  50%  { opacity: 1; }
+  100% { opacity: 0.7; }
+}
+
+.game7-table.shaking .game7-water {
+  animation: game7-splash 0.45s linear infinite;
+}
+
+/* ---- Droplets (spill effect) ---- */
+.game7-drop {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(95, 212, 225, 0.7);
+  pointer-events: none;
+  animation: game7-fall 0.7s ease-in forwards;
+}
+
+@keyframes game7-fall {
+  0%   { transform: translateY(0) scale(1); opacity: 0.9; }
+  100% { transform: translateY(60px) scale(0.3); opacity: 0; }
+}
+
+/* ---- Controls row ---- */
+.game7-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  width: 100%;
+}
+
+.game7-red-btn {
+  appearance: none;
+  border: 1px solid rgba(220, 80, 80, 0.45);
+  border-radius: 999px;
+  padding: 0.55rem 1rem;
+  font-size: 0.82rem;
+  font-family: inherit;
+  cursor: pointer;
+  background: rgba(180, 50, 50, 0.18);
+  color: #ffd8d8;
+  transition: background 180ms ease, border-color 180ms ease, transform 120ms ease;
+  letter-spacing: 0.02em;
+}
+
+.game7-red-btn:hover,
+.game7-red-btn:focus-visible {
+  background: rgba(200, 60, 60, 0.3);
+  border-color: rgba(220, 80, 80, 0.7);
+  transform: translateY(-2px);
+}
+
+.game7-red-btn:active {
+  transform: translateY(0);
+}
+
+.game7-lift-btn {
+  appearance: none;
+  border: 1px solid rgba(95, 212, 225, 0.55);
+  border-radius: 999px;
+  padding: 0.55rem 1.2rem;
+  font-size: 0.9rem;
+  font-family: inherit;
+  cursor: pointer;
+  background: rgba(95, 212, 225, 0.14);
+  color: #d8f9ff;
+  font-weight: 700;
+  transition: background 180ms ease, border-color 180ms ease, transform 120ms ease, box-shadow 180ms ease;
+  letter-spacing: 0.04em;
+}
+
+.game7-lift-btn:hover,
+.game7-lift-btn:focus-visible {
+  background: rgba(95, 212, 225, 0.28);
+  border-color: rgba(95, 212, 225, 0.85);
+  box-shadow: 0 0 18px rgba(95, 212, 225, 0.3);
+  transform: translateY(-2px);
+}
+
+.game7-lift-btn:active {
+  transform: translateY(0);
+}
+
+.game7-lift-btn.holding {
+  background: rgba(95, 212, 225, 0.32);
+  border-color: rgba(95, 212, 225, 0.9);
+  box-shadow: 0 0 22px rgba(95, 212, 225, 0.4);
+}
+
+/* ---- Win overlay ---- */
+.game7-end {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(4, 12, 16, 0.88);
+  color: #e9fdff;
+  text-align: center;
+  padding: 2rem;
+  z-index: 10;
+  border-radius: 24px;
+  backdrop-filter: blur(4px);
+}
+
+.game7-end-content {
+  display: grid;
+  gap: 0.75rem;
+  max-width: 28rem;
+}
+
+.game7-end-icon {
+  font-size: 2.5rem;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.game7-end-content h2 {
+  margin: 0;
+  font-size: 1.4rem;
+  color: #d8f9ff;
+  letter-spacing: 0.04em;
+}
+
+.game7-end-content p {
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.75;
+  color: #b8dde8;
+}

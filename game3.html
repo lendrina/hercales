@@ -5,18 +5,62 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cerynitian Hind | The 12 Labors of the Modern Hero</title>
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="game3.css" />
 </head>
 <body>
   <main class="game-shell">
     <section class="game-panel">
-      <img class="game-icon" src="assets/logo_transparent_3.png" alt="Icon for Cerynitian Hind" />
+      <img class="game-icon" src="assets/logo_transparent_4.png" alt="Icon for Cerynitian Hind" />
       <h1>Cerynitian Hind</h1>
-      <p>Pursue a swift, graceful quest. This minigame page is themed after the labor of Cerynitian Hind.</p>
-      <div class="game-actions">
-        <a class="link-button" href="index.html">Back to menu</a>
+      <div class="game1-task">Task: Settle, don't fix</div>
+      <p>The Cerynitian Hind could never be caught by force — only by patience. Perfectionism is the same trap: the harder you chase flawlessness, the more it slips away. Progress lives in "good enough," not in endless fine-tuning.</p>
+      <div class="game-actions"><a class="link-button" href="index.html">Back to menu</a></div>
+      <div class="game-frame game1-frame">
+        <div class="game1-start-panel" id="gameStart">
+          <h2>The shower knob awaits.</h2>
+          <p>Set the water to a comfortable temperature — but the knob is hair-trigger sensitive. Every adjustment adds turbulence. Hold still in the "good enough" zone and the water calms itself.</p>
+          <button class="link-button" id="startButton">Turn on the shower</button>
+        </div>
+        <div class="game3-board hidden" id="gameBoard">
+          <div class="game3-showerhead" aria-hidden="true">
+            <div class="game3-steam" id="steam"></div>
+          </div>
+          <div class="game3-slider-area">
+            <div class="game3-track" id="sliderTrack">
+              <div class="game3-zone game3-zone-cold-far"></div>
+              <div class="game3-zone game3-zone-good-cold"></div>
+              <div class="game3-zone game3-zone-perfect"></div>
+              <div class="game3-zone game3-zone-good-hot"></div>
+              <div class="game3-zone game3-zone-hot-far"></div>
+              <div class="game3-knob-thumb" id="knobThumb"></div>
+              <div class="game3-water-indicator" id="waterIndicator"></div>
+            </div>
+            <div class="game3-track-labels">
+              <span>Freezing</span>
+              <span>Good enough</span>
+              <span>Perfect</span>
+              <span>Good enough</span>
+              <span>Scalding</span>
+            </div>
+          </div>
+          <div class="game3-temp-display" id="tempDisplay">
+            <span class="game3-temp-label" id="tempLabel">---</span>
+          </div>
+          <div class="game3-end hidden" id="endOverlay">
+            <p class="game3-end-title">You found your warmth.</p>
+            <p class="game3-end-body">Good enough was always enough. Letting go of perfect is what made the water calm.</p>
+          </div>
+        </div>
+        <div class="game1-status">
+          <div class="game1-meter">
+            <label for="meterFill">Calm</label>
+            <div class="meter-bar"><div class="meter-fill" id="meterFill"></div></div>
+          </div>
+          <div class="game1-message" id="gameMessage">Press "Turn on the shower" to begin.</div>
+        </div>
       </div>
-      <div class="game-frame">Prepare for the Cerynitian Hind challenge.</div>
     </section>
   </main>
+  <script src="game3.js" defer></script>
 </body>
 </html>

@@ -1,0 +1,261 @@
+/* Game 5 — Augean Dung / Inbox Burnout */
+
+.game5-board {
+  position: relative;
+  width: 100%;
+  justify-self: stretch;
+  min-height: 360px;
+  border-radius: 20px;
+  background: rgba(6, 10, 16, 0.96);
+  border: 1px solid rgba(95, 212, 225, 0.14);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Toolbar */
+.game5-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 1rem;
+  background: rgba(14, 18, 26, 0.98);
+  border-bottom: 1px solid rgba(95, 212, 225, 0.12);
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+.game5-inbox-label {
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.game5-count {
+  font-size: 0.8rem;
+  color: #8ab0c4;
+  margin-right: auto;
+}
+
+.game5-filter-btn {
+  appearance: none;
+  border: 1px solid rgba(95, 212, 225, 0.5);
+  border-radius: 999px;
+  padding: 0.45rem 1rem;
+  font-size: 0.85rem;
+  font-family: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  background: rgba(95, 212, 225, 0.12);
+  color: var(--accent);
+  transition: background 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+  white-space: nowrap;
+}
+
+.game5-filter-btn:hover,
+.game5-filter-btn:focus-visible {
+  background: rgba(95, 212, 225, 0.28);
+  box-shadow: 0 0 16px rgba(95, 212, 225, 0.3);
+  transform: scale(1.04);
+}
+
+.game5-filter-btn.active {
+  background: linear-gradient(135deg, #5fd4e1, #2fd2d8);
+  color: #041d22;
+  border-color: transparent;
+  box-shadow: 0 0 20px rgba(95, 212, 225, 0.4);
+}
+
+/* Email list */
+.game5-email-list {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 0.4rem 0;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(95, 212, 225, 0.2) transparent;
+}
+
+.game5-email-list::-webkit-scrollbar {
+  width: 4px;
+}
+
+.game5-email-list::-webkit-scrollbar-thumb {
+  background: rgba(95, 212, 225, 0.2);
+  border-radius: 999px;
+}
+
+/* Individual email row */
+.game5-email {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.55rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  cursor: pointer;
+  transition: background 140ms ease, opacity 300ms ease, transform 300ms ease;
+  animation: game5-slide-in 200ms ease both;
+  flex-shrink: 0;
+}
+
+@keyframes game5-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(-18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.game5-email:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.game5-email.game5-email-spam {
+  border-left: 3px solid rgba(220, 80, 90, 0.55);
+}
+
+.game5-email.game5-email-real {
+  border-left: 3px solid rgba(95, 212, 225, 0.35);
+}
+
+.game5-email.game5-removing {
+  opacity: 0;
+  transform: translateX(40px);
+  pointer-events: none;
+  transition: opacity 260ms ease, transform 260ms ease;
+}
+
+/* Sender dot / avatar */
+.game5-dot {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  text-transform: uppercase;
+}
+
+.game5-email-spam .game5-dot {
+  background: rgba(220, 80, 90, 0.22);
+  color: #f88;
+}
+
+.game5-email-real .game5-dot {
+  background: rgba(95, 212, 225, 0.18);
+  color: var(--accent);
+}
+
+/* Email text content */
+.game5-email-body {
+  flex: 1;
+  min-width: 0;
+  text-align: left;
+}
+
+.game5-subject {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #e2f0f8;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.game5-sender {
+  font-size: 0.76rem;
+  color: #6a8fa0;
+  margin-top: 1px;
+}
+
+/* Type badge */
+.game5-badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  padding: 0.2rem 0.55rem;
+  flex-shrink: 0;
+}
+
+.game5-email-spam .game5-badge {
+  background: rgba(220, 80, 90, 0.18);
+  color: #f88;
+  border: 1px solid rgba(220, 80, 90, 0.3);
+}
+
+.game5-email-real .game5-badge {
+  background: rgba(95, 212, 225, 0.12);
+  color: var(--accent);
+  border: 1px solid rgba(95, 212, 225, 0.22);
+}
+
+/* Delete hint icon */
+.game5-delete-hint {
+  font-size: 0.8rem;
+  color: rgba(220, 80, 90, 0.5);
+  flex-shrink: 0;
+  opacity: 0;
+  transition: opacity 140ms ease;
+}
+
+.game5-email-spam:hover .game5-delete-hint {
+  opacity: 1;
+}
+
+/* End overlay */
+.game5-end {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(6, 10, 16, 0.88);
+  color: #e9fdff;
+  font-size: 1.1rem;
+  text-align: center;
+  padding: 2rem;
+  z-index: 10;
+  letter-spacing: 0.02em;
+  backdrop-filter: blur(4px);
+}
+
+.game5-end-inner {
+  display: grid;
+  gap: 0.85rem;
+  max-width: 28rem;
+}
+
+.game5-end h2 {
+  margin: 0;
+  font-size: 1.4rem;
+  letter-spacing: 0.04em;
+  color: #fff;
+}
+
+.game5-end p {
+  margin: 0;
+  color: #c8e8f4;
+  line-height: 1.7;
+  font-size: 0.98rem;
+}
+
+/* Filter pulse animation when first shown */
+@keyframes game5-filter-appear {
+  0% { opacity: 0; transform: scale(0.8); }
+  60% { transform: scale(1.08); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.game5-filter-btn.appearing {
+  animation: game5-filter-appear 400ms ease both;
+}

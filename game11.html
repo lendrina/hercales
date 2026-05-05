@@ -5,18 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Apples of the Hesperides | The 12 Labors of the Modern Hero</title>
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="game11.css" />
 </head>
 <body>
   <main class="game-shell">
     <section class="game-panel">
-      <img class="game-icon" src="assets/logo_transparent_11.png" alt="Icon for Apples of the Hesperides" />
+      <img class="game-icon" src="assets/logo_transparent_10.png" alt="Icon for Apples of the Hesperides" />
       <h1>Apples of the Hesperides</h1>
-      <p>Seek golden rewards under twilight skies. This minigame page is themed after the labor of Apples of the Hesperides.</p>
-      <div class="game-actions">
-        <a class="link-button" href="index.html">Back to menu</a>
+      <div class="game1-task">Task: Stay on your path</div>
+      <p>The golden apples grow only for those who walk their own road. Every time you glance at the others racing beside you, the garden recedes — and their illusory lead feels impossibly real.</p>
+      <div class="game-actions"><a class="link-button" href="index.html">Back to menu</a></div>
+      <div class="game-frame game1-frame">
+        <div class="game1-start-panel" id="gameStart">
+          <h2>Everyone else looks further ahead.</h2>
+          <p>Four travelers share your path. Their bars flicker and leap — sometimes surging past yours. Click <strong>your</strong> bar to move forward. Click theirs and you'll freeze in place while they grow more distracting. The only way to reach the golden apples is to keep your eyes on your own bar.</p>
+          <button class="link-button" id="startButton">Begin the journey</button>
+        </div>
+        <div class="game11-board hidden" id="gameBoard"><!-- bars injected by JS --></div>
+        <div class="game1-status">
+          <div class="game1-meter">
+            <label for="meterFill">Your progress</label>
+            <div class="meter-bar"><div class="meter-fill" id="meterFill"></div></div>
+          </div>
+          <div class="game1-message" id="gameMessage">Click your bar to move forward. Ignore the others.</div>
+        </div>
       </div>
-      <div class="game-frame">Prepare for the Apples of the Hesperides challenge.</div>
     </section>
   </main>
+  <script src="game11.js" defer></script>
 </body>
 </html>
