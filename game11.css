@@ -1,0 +1,196 @@
+/* ── Game 11: Apples of the Hesperides ── */
+
+.game11-board {
+  position: relative;
+  width: 100%;
+  justify-self: stretch;
+  min-height: 360px;
+  border-radius: 24px;
+  background: radial-gradient(circle at 20% 10%, #1e2e14 0%, #0e1a0a 50%, #060b04 100%);
+  box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.45);
+  padding: 1.5rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* ── Individual bar rows ── */
+.game11-bar-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.game11-bar-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.88rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #c8e6c0;
+}
+
+.game11-bar-label .game11-name {
+  font-weight: 700;
+}
+
+.game11-bar-label .game11-pct {
+  font-size: 0.78rem;
+  color: #8db885;
+}
+
+/* The clickable track */
+.game11-track {
+  width: 100%;
+  height: 36px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 200ms ease, box-shadow 200ms ease;
+}
+
+.game11-track:hover {
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+.game11-fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 260ms ease;
+  position: relative;
+}
+
+/* ── Player's own bar ── */
+.game11-bar-row.is-player .game11-track {
+  height: 44px;
+  border-color: rgba(95, 212, 225, 0.35);
+  box-shadow: 0 0 18px rgba(95, 212, 225, 0.12);
+}
+
+.game11-bar-row.is-player .game11-track:hover {
+  border-color: rgba(95, 212, 225, 0.7);
+  box-shadow: 0 0 28px rgba(95, 212, 225, 0.28);
+}
+
+.game11-bar-row.is-player .game11-fill {
+  background: linear-gradient(90deg, #5fd4e1, #a7f7ff);
+}
+
+.game11-bar-row.is-player .game11-name {
+  color: #a7f7ff;
+  font-size: 1rem;
+}
+
+/* ── Other players' bars (glossy, tempting) ── */
+.game11-bar-row.is-other .game11-track {
+  height: 40px;
+  border-color: rgba(255, 210, 80, 0.25);
+  box-shadow: 0 0 14px rgba(255, 210, 80, 0.08);
+}
+
+.game11-bar-row.is-other .game11-track:hover {
+  border-color: rgba(255, 210, 80, 0.55);
+  box-shadow: 0 0 24px rgba(255, 210, 80, 0.22);
+}
+
+.game11-bar-row.is-other .game11-fill {
+  background: linear-gradient(90deg, #c8960a, #ffe066, #ffd700);
+  box-shadow: inset 0 0 20px rgba(255, 255, 200, 0.35);
+}
+
+/* Gloss sheen inside other bars */
+.game11-bar-row.is-other .game11-fill::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.28) 0%, transparent 55%);
+  border-radius: 999px;
+  pointer-events: none;
+}
+
+.game11-bar-row.is-other .game11-name {
+  color: #ffe580;
+}
+
+/* ── Flashing / distraction state on other bars ── */
+.game11-bar-row.is-distracted .game11-track {
+  border-color: rgba(255, 200, 20, 0.85) !important;
+  box-shadow: 0 0 34px rgba(255, 210, 80, 0.55) !important;
+  animation: game11-pulse 0.55s ease-in-out infinite alternate;
+}
+
+@keyframes game11-pulse {
+  from { box-shadow: 0 0 18px rgba(255, 210, 80, 0.45); }
+  to   { box-shadow: 0 0 48px rgba(255, 210, 80, 0.85); }
+}
+
+/* Frozen player bar */
+.game11-bar-row.is-frozen .game11-fill {
+  transition: none;
+  opacity: 0.65;
+}
+
+.game11-bar-row.is-frozen .game11-track {
+  cursor: not-allowed;
+  border-color: rgba(95, 212, 225, 0.15) !important;
+}
+
+/* ── Win overlay ── */
+.game11-end {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(4, 18, 4, 0.88);
+  color: #e9fdee;
+  text-align: center;
+  padding: 2rem;
+  z-index: 10;
+  border-radius: 24px;
+  backdrop-filter: blur(4px);
+}
+
+.game11-end h2 {
+  margin: 0 0 0.75rem;
+  font-size: 1.6rem;
+  color: #a7f7ff;
+  letter-spacing: 0.04em;
+}
+
+.game11-end p {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #c8f5cc;
+  max-width: 28rem;
+}
+
+/* ── Comparison message badge ── */
+.game11-compare-msg {
+  position: absolute;
+  top: 1rem;
+  right: 1.25rem;
+  background: rgba(30, 22, 4, 0.92);
+  border: 1px solid rgba(255, 210, 80, 0.45);
+  color: #ffe580;
+  font-size: 0.82rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 250ms ease, transform 250ms ease;
+  z-index: 5;
+  max-width: 260px;
+  text-align: center;
+  line-height: 1.35;
+}
+
+.game11-compare-msg.visible {
+  opacity: 1;
+  transform: translateY(0);
+}

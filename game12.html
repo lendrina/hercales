@@ -5,18 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cerberus | The 12 Labors of the Modern Hero</title>
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="game12.css" />
 </head>
 <body>
   <main class="game-shell">
     <section class="game-panel">
       <img class="game-icon" src="assets/logo_transparent_12.png" alt="Icon for Cerberus" />
       <h1>Cerberus</h1>
-      <p>Confront the final challenge at the edge of the world. This minigame page is themed after the labor of Cerberus.</p>
-      <div class="game-actions">
-        <a class="link-button" href="index.html">Back to menu</a>
+      <div class="game1-task">Task: Walk through</div>
+      <p>The final labor is not a battle — it is a passage. The guardian of the underworld is not a beast to be slain, but a mirror of everything you have carried. To reach the other side, you must stop fighting yourself and simply keep moving.</p>
+      <div class="game-actions"><a class="link-button" href="index.html">Back to menu</a></div>
+      <div class="game-frame game1-frame">
+        <div class="game1-start-panel" id="gameStart">
+          <h2>Face Yourself and Walk Through</h2>
+          <p>Use <strong>arrow keys or WASD</strong> to move your hero forward. The path is full of fears and doubts. Don't fight the words — walk through them. Pressing <strong>Space</strong> to fight only makes them grow stronger.</p>
+          <button class="link-button" id="startButton">Begin the Descent</button>
+        </div>
+        <div class="game12-board hidden" id="gameBoard"><!-- path + player + obstacles --></div>
+        <div class="game1-status">
+          <div class="game1-meter">
+            <label for="meterFill">Acceptance</label>
+            <div class="meter-bar"><div class="meter-fill" id="meterFill"></div></div>
+          </div>
+          <div class="game1-message" id="gameMessage">Keep moving forward — don't stop to fight.</div>
+        </div>
       </div>
-      <div class="game-frame">Prepare for the Cerberus challenge.</div>
     </section>
   </main>
+  <script src="game12.js" defer></script>
 </body>
 </html>

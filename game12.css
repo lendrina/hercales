@@ -1,0 +1,205 @@
+/* Game 12 — Cerberus / Facing Yourself */
+
+.game12-board {
+  position: relative;
+  width: 100%;
+  justify-self: stretch;
+  min-height: 360px;
+  border-radius: 24px;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 20% 50%, #1a0d2e 0%, #0d0d1a 40%, #060610 100%);
+  box-shadow: inset 0 0 120px rgba(0, 0, 0, 0.55);
+  cursor: none;
+}
+
+/* Ground path strip */
+.game12-path {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 120px;
+  background: linear-gradient(180deg,
+    transparent 0%,
+    rgba(70, 55, 100, 0.18) 20%,
+    rgba(80, 65, 110, 0.28) 50%,
+    rgba(70, 55, 100, 0.18) 80%,
+    transparent 100%
+  );
+  border-top: 1px solid rgba(150, 120, 200, 0.12);
+  border-bottom: 1px solid rgba(150, 120, 200, 0.12);
+}
+
+/* Start and end markers */
+.game12-start-marker,
+.game12-end-marker {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 100px;
+  border-radius: 2px;
+}
+
+.game12-start-marker {
+  left: 40px;
+  background: linear-gradient(180deg, transparent, rgba(95, 212, 225, 0.5), transparent);
+}
+
+.game12-end-marker {
+  right: 40px;
+  background: linear-gradient(180deg, transparent, rgba(255, 220, 100, 0.6), transparent);
+  box-shadow: 0 0 18px rgba(255, 200, 60, 0.3);
+}
+
+.game12-end-label {
+  position: absolute;
+  right: 22px;
+  top: calc(50% - 70px);
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 210, 80, 0.7);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+/* Player avatar */
+.game12-player {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #a0f0ff, #5fd4e1 60%, #2a9aad);
+  box-shadow: 0 0 12px rgba(95, 212, 225, 0.8), 0 0 28px rgba(95, 212, 225, 0.35);
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  transition: box-shadow 150ms ease;
+}
+
+.game12-player.game12-player-hurt {
+  box-shadow: 0 0 18px rgba(255, 80, 80, 0.9), 0 0 40px rgba(255, 80, 80, 0.4);
+}
+
+/* Fear word blobs */
+.game12-fear {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  padding: 0.45rem 0.85rem;
+  border-radius: 999px;
+  font-style: italic;
+  font-size: 0.92rem;
+  letter-spacing: 0.04em;
+  font-weight: 600;
+  color: rgba(255, 200, 220, 0.9);
+  background: radial-gradient(ellipse at center, rgba(160, 30, 70, 0.42), rgba(100, 10, 40, 0.28));
+  border: 1px solid rgba(200, 60, 100, 0.3);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), inset 0 0 12px rgba(200, 50, 90, 0.15);
+  z-index: 5;
+  user-select: none;
+  pointer-events: none;
+  transition: transform 300ms ease, box-shadow 300ms ease, border-color 300ms ease;
+  white-space: nowrap;
+}
+
+.game12-fear.game12-fear-touched {
+  color: rgba(255, 220, 235, 0.6);
+  border-color: rgba(200, 60, 100, 0.15);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+}
+
+.game12-fear.game12-fear-fading {
+  color: rgba(255, 220, 235, 0.25);
+  background: radial-gradient(ellipse at center, rgba(160, 30, 70, 0.12), rgba(100, 10, 40, 0.08));
+  border-color: rgba(200, 60, 100, 0.06);
+  box-shadow: none;
+}
+
+.game12-fear.game12-fear-grown {
+  color: rgba(255, 160, 190, 1);
+  background: radial-gradient(ellipse at center, rgba(200, 40, 80, 0.65), rgba(140, 10, 50, 0.48));
+  border-color: rgba(240, 80, 120, 0.55);
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.55), inset 0 0 20px rgba(230, 50, 90, 0.25), 0 0 20px rgba(200, 40, 80, 0.3);
+}
+
+/* Particle sparkles for walking through */
+.game12-spark {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(95, 212, 225, 0.8);
+  pointer-events: none;
+  z-index: 8;
+  transform: translate(-50%, -50%);
+  animation: game12-spark-fade 600ms ease forwards;
+}
+
+@keyframes game12-spark-fade {
+  0%   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(0.2); }
+}
+
+/* Win overlay */
+.game12-end {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(4, 6, 16, 0.88);
+  z-index: 20;
+  text-align: center;
+  padding: 2rem;
+  animation: game12-end-fade 600ms ease;
+}
+
+@keyframes game12-end-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.game12-end-inner {
+  max-width: 22rem;
+}
+
+.game12-end-inner h2 {
+  margin: 0 0 0.75rem;
+  font-size: 1.6rem;
+  letter-spacing: 0.06em;
+  color: #ffe97a;
+  text-shadow: 0 0 28px rgba(255, 210, 60, 0.5);
+}
+
+.game12-end-inner p {
+  margin: 0 0 1.25rem;
+  line-height: 1.7;
+  color: #d8f0ff;
+  font-size: 1rem;
+}
+
+/* Ambient particles in the background */
+.game12-ambient {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0.12;
+  animation: game12-drift linear infinite;
+}
+
+@keyframes game12-drift {
+  0%   { transform: translateY(0px) scale(1); opacity: 0.08; }
+  50%  { transform: translateY(-18px) scale(1.1); opacity: 0.16; }
+  100% { transform: translateY(0px) scale(1); opacity: 0.08; }
+}
+
+/* Slow pulse on player when slowed */
+.game12-player.game12-player-slowed {
+  animation: game12-slow-pulse 400ms ease infinite;
+}
+
+@keyframes game12-slow-pulse {
+  0%   { box-shadow: 0 0 12px rgba(255, 120, 60, 0.8), 0 0 28px rgba(255, 80, 30, 0.35); }
+  50%  { box-shadow: 0 0 22px rgba(255, 120, 60, 1.0), 0 0 45px rgba(255, 80, 30, 0.55); }
+  100% { box-shadow: 0 0 12px rgba(255, 120, 60, 0.8), 0 0 28px rgba(255, 80, 30, 0.35); }
+}

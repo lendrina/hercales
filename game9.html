@@ -5,18 +5,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Belt of Hippolyta | The 12 Labors of the Modern Hero</title>
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="game9.css" />
 </head>
 <body>
   <main class="game-shell">
     <section class="game-panel">
-      <img class="game-icon" src="assets/logo_transparent_9.png" alt="Icon for Belt of Hippolyta" />
+      <img class="game-icon" src="assets/logo_transparent_11.png" alt="Icon for Belt of Hippolyta" />
       <h1>Belt of Hippolyta</h1>
-      <p>Earn the prize with tact and strength. This minigame page is themed after the labor of Belt of Hippolyta.</p>
-      <div class="game-actions">
-        <a class="link-button" href="index.html">Back to menu</a>
+      <div class="game1-task">Task: Act on your values</div>
+      <p>Hippolyta's belt cannot be won by pleasing the crowd. Three judges surround you with endless, contradictory demands. Only the hero who stays true to their core value will earn the prize.</p>
+      <div class="game-actions"><a class="link-button" href="index.html">Back to menu</a></div>
+      <div class="game-frame game1-frame">
+        <div class="game1-start-panel" id="gameStart">
+          <h2>Everyone has an opinion about you.</h2>
+          <p>Three judges will demand different things every few seconds. Choose your core value — then act on it, not on their noise. Fill the Integrity meter to win the belt.</p>
+          <button class="link-button" id="startButton">Claim the Belt</button>
+        </div>
+        <div class="game9-board hidden" id="gameBoard">
+          <!-- NPCs and approval bar injected by JS -->
+        </div>
+        <div class="game1-status">
+          <div class="game1-meter">
+            <label for="meterFill">Integrity</label>
+            <div class="meter-bar"><div class="meter-fill" id="meterFill"></div></div>
+          </div>
+          <div class="game1-message" id="gameMessage">Choose your value and begin.</div>
+        </div>
       </div>
-      <div class="game-frame">Prepare for the Belt of Hippolyta challenge.</div>
     </section>
   </main>
+  <script src="game9.js" defer></script>
 </body>
 </html>

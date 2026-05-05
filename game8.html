@@ -5,18 +5,45 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mares of Diomedes | The 12 Labors of the Modern Hero</title>
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="game8.css" />
 </head>
 <body>
   <main class="game-shell">
     <section class="game-panel">
       <img class="game-icon" src="assets/logo_transparent_8.png" alt="Icon for Mares of Diomedes" />
       <h1>Mares of Diomedes</h1>
-      <p>Dominate the untamed steeds of legend. This minigame page is themed after the labor of Mares of Diomedes.</p>
-      <div class="game-actions">
-        <a class="link-button" href="index.html">Back to menu</a>
+      <div class="game1-task">Task: Don't press</div>
+      <p>King Diomedes fed his mares on human flesh — each meal made them wilder, hungrier, more destructive. Destructive habits work the same way: every quick fix feels like relief, but it only sharpens the hunger that comes back next time.</p>
+      <div class="game-actions"><a class="link-button" href="index.html">Back to menu</a></div>
+      <div class="game-frame game1-frame">
+        <div class="game1-start-panel" id="gameStart">
+          <h2>The Big Red Button is Waiting</h2>
+          <p>Red dots of discomfort will flood your room. There's a "Quick Relief" button that clears them instantly — but every press makes things come back harder. Resist the urge and let the discomfort fade on its own. Build your Resilience to 100% to win.</p>
+          <button class="link-button" id="startButton">Face the discomfort</button>
+        </div>
+        <div class="game8-board hidden" id="gameBoard">
+          <canvas id="game8Canvas"></canvas>
+          <button class="game8-relief" id="reliefBtn">Quick Relief</button>
+          <div class="game8-urge" id="urgeBar">
+            <span class="game8-urge-label">urge to press</span>
+            <div class="game8-urge-track"><div class="game8-urge-fill" id="urgeFill"></div></div>
+          </div>
+          <div class="game8-surge-banner hidden" id="surgeBanner">Things came back WORSE</div>
+          <div class="game8-end hidden" id="endOverlay">
+            <p>You broke the cycle.</p>
+            <p>By sitting with discomfort instead of pressing for quick relief, you let it fade on its own — and discovered it always does.</p>
+          </div>
+        </div>
+        <div class="game1-status">
+          <div class="game1-meter">
+            <label for="meterFill">Resilience</label>
+            <div class="meter-bar"><div class="meter-fill" id="meterFill"></div></div>
+          </div>
+          <div class="game1-message" id="gameMessage">Press "Face the discomfort" to begin.</div>
+        </div>
       </div>
-      <div class="game-frame">Prepare for the Mares of Diomedes challenge.</div>
     </section>
   </main>
+  <script src="game8.js" defer></script>
 </body>
 </html>

@@ -1,0 +1,97 @@
+/* Game 4 — Erymanthian Boar / Anxiety cloud chase */
+
+.game4-board {
+  position: relative;
+  width: 100%;
+  justify-self: stretch;
+  min-height: 360px;
+  border-radius: 24px;
+  overflow: hidden;
+  background: radial-gradient(circle at 40% 35%, #1a1228 0%, #0d0a18 55%, #060409 100%);
+  box-shadow: inset 0 0 120px rgba(0, 0, 0, 0.45);
+  cursor: none;
+}
+
+.game4-cloud {
+  position: absolute;
+  width: 120px;
+  height: 80px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 40%,
+    rgba(80, 60, 110, 0.95) 0%,
+    rgba(50, 35, 80, 0.88) 40%,
+    rgba(25, 15, 45, 0.75) 75%,
+    transparent 100%
+  );
+  box-shadow:
+    0 0 40px 18px rgba(60, 30, 100, 0.55),
+    0 0 80px 36px rgba(40, 20, 70, 0.3);
+  filter: blur(6px);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: opacity 600ms ease, width 600ms ease, height 600ms ease;
+  z-index: 2;
+}
+
+/* Pulsing inner core of the cloud */
+.game4-cloud::before {
+  content: '';
+  position: absolute;
+  inset: 20% 22%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(130, 90, 200, 0.7) 0%, transparent 70%);
+  animation: game4-pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes game4-pulse {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.12); }
+}
+
+/* Cursor dot so the player can see where they are */
+.game4-cursor {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(95, 212, 225, 0.85);
+  box-shadow: 0 0 8px rgba(95, 212, 225, 0.6);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  transition: opacity 200ms;
+}
+
+.game4-end {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(8, 10, 14, 0.82);
+  color: #e9fdff;
+  font-size: 1.15rem;
+  text-align: center;
+  padding: 2rem;
+  z-index: 5;
+  letter-spacing: 0.02em;
+  border-radius: 24px;
+}
+
+.game4-end-inner {
+  display: grid;
+  gap: 1rem;
+  max-width: 28rem;
+}
+
+.game4-end-inner h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #a7f7ff;
+  letter-spacing: 0.04em;
+}
+
+.game4-end-inner p {
+  margin: 0;
+  color: #d7f6ff;
+  line-height: 1.7;
+}

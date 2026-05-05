@@ -5,18 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cattle of Geryon | The 12 Labors of the Modern Hero</title>
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="game10.css" />
 </head>
 <body>
   <main class="game-shell">
     <section class="game-panel">
-      <img class="game-icon" src="assets/logo_transparent_10.png" alt="Icon for Cattle of Geryon" />
+      <img class="game-icon" src="assets/logo_transparent_9.png" alt="Icon for Cattle of Geryon" />
       <h1>Cattle of Geryon</h1>
-      <p>Herd the lost treasure through a wild journey. This minigame page is themed after the labor of Cattle of Geryon.</p>
-      <div class="game-actions">
-        <a class="link-button" href="index.html">Back to menu</a>
+      <div class="game1-task">Task: Step back</div>
+      <p>Like Heracles driving the cattle of Geryon endlessly westward, the modern hero chases an infinite task list — always moving, never arriving. The real feat is knowing when to stop.</p>
+      <div class="game-actions"><a class="link-button" href="index.html">Back to menu</a></div>
+      <div class="game-frame game1-frame">
+        <div class="game1-start-panel" id="gameStart">
+          <h2>The tasks never end. Can you stop?</h2>
+          <p>A flood of to-dos is coming your way. Complete them — or realize the inbox always refills. The only real win is choosing to step back.</p>
+          <button class="link-button" id="startButton">Start working</button>
+        </div>
+        <div class="game10-board hidden" id="gameBoard"><!-- task cards injected by JS --></div>
+        <div class="game1-status">
+          <div class="game1-meter">
+            <label for="meterFill">Awareness</label>
+            <div class="meter-bar"><div class="meter-fill" id="meterFill"></div></div>
+          </div>
+          <div class="game1-message" id="gameMessage">Press "Start working" to begin.</div>
+        </div>
       </div>
-      <div class="game-frame">Prepare for the Cattle of Geryon challenge.</div>
     </section>
   </main>
+  <script src="game10.js" defer></script>
 </body>
 </html>
