@@ -418,6 +418,8 @@ body::before {
 
 .game2-board {
   position: relative;
+  width: 100%;
+  justify-self: stretch;
   min-height: 360px;
   border-radius: 24px;
   overflow: hidden;
@@ -432,6 +434,8 @@ body::before {
 
 .game2-gum {
   position: absolute;
+  z-index: 2;
+  opacity: 1;
   appearance: none;
   border: 1px solid rgba(255, 255, 255, 0.28);
   background: radial-gradient(circle at 30% 30%, #ffc7d1 0%, #e36a83 55%, #8a2740 110%);
